@@ -1,3 +1,4 @@
+// lo puse aqui pero no lo detectava, asi que deje las areas de programar en java script en templates tambien
 //variables
 const nombre_usuario = document.getElementById('nombre_registro')
 const Apellido_Paterno = document.getElementById('apellidoPaterno_registroa')
