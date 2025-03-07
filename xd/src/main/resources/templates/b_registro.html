@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://images.pexels.com/photos/30353517/pexels-photo-30353517/free-photo-of-serene-misty-coastal-landscape-at-sunrise.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Contenedor del formulario */
+        .registro-container {
+            background: rgba(8, 106, 57, 0.9);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 10px rgba(3, 244, 184, 0.3);
+            width: 290px; /* Más compacto */
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .registro-container:hover {
+            transform: scale(1.04);
+        }
+
+        /* Título */
+        h2 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo para etiquetas */
+        label {
+            display: block;
+            text-align: left;
+            color: white;
+            font-size: 11px;
+            margin-top: 6px;
+        }
+
+        /* Campos de entrada reducidos */
+        input {
+            width: 90%;
+            padding: 6px; /* Más pequeño */
+            margin-top: 2px;
+            border: 1px solid #0c5c3c;
+            border-radius: 6px; /* Bordes más pequeños */
+            background-color: #f8f8f8;
+            font-size: 12px;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #320dd4;
+            background-color: #dde7ff;
+            outline: none;
+        }
+
+        /* Botón de registro */
+        button {
+            width: 100%;
+            padding: 6px;
+            background-color: #69f0a3; /* Verde oscuro */
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #03411c; /* Verde más oscuro al pasar el mouse */
+            transform: scale(1.05);
+        }
+
+        /* Mensaje de error */
+        #errorMensaje {
+            color: red;
+            font-size: 11px;
+            margin-top: 8px;
+        }
+    </style>
+    
+
+</head>
+<body>
+
+<div class="registro-container">
+    <h2>Crear Cuenta</h2>
+    <form id="registroForm">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre_registro" required>
+
+        <label for="apellidoPaterno">Apellido Paterno</label>
+        <input type="text" id="apellidoPaterno_registroa" required>
+
+        <label for="apellidoMaterno">Apellido Materno</label>
+        <input type="text" id="apellidoMaterno_registro" required>
+
+        <label for="correo">Correo Electrónico</label>
+        <input type="email" id="correo_registro" required>
+
+        <label for="confirmarCorreo">Confirmar Correo</label>
+        <input type="email" id="confirmarCorreo_registro" required>
+
+        <label for="contraseña">Contraseña</label>
+        <input type="password" id="contraseña_registro" required>
+
+        <label for="confirmarContraseña">Confirmar Contraseña</label>
+        <input type="password" id="confirmarContraseña_registro" required>
+
+        <!--
+        <label for="fotoPerfil">Foto de Perfil</label>
+        <input type="file" id="fotoPerfil_registro" accept="image/*" required>
+    -->
+        <button type="submit" id="guardarRegistro_registro">Registrar</button>
+
+        <p id="errorMensaje_registro"></p>
+    </form>
+</div>
+<!-- 
+<script>
+    document.getElementById("registroForm").addEventListener("submit", function(event) {
+        let correo = document.getElementById("correo").value;
+        let confirmarCorreo = document.getElementById("confirmarCorreo").value;
+        let contraseña = document.getElementById("contraseña").value;
+        let confirmarContraseña = document.getElementById("confirmarContraseña").value;
+        let errorMensaje = document.getElementById("errorMensaje");
+
+        errorMensaje.innerText = ""; // Limpiar mensajes anteriores
+
+        if (correo !== confirmarCorreo) {
+            errorMensaje.innerText = "Los correos electrónicos no coinciden.";
+            event.preventDefault();
+            return;
+        }
+
+        if (contraseña !== confirmarContraseña) {
+            errorMensaje.innerText = "Las contraseñas no coinciden.";
+            event.preventDefault();
+            return;
+        }
+
+        alert("Registro exitoso");
+    });
+</script>/static/js/crear_cuenta.js
+-->
+<script src="js/crear_cuenta.js"></script>
+</body>
+</html>

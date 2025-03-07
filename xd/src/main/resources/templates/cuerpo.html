@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Habitaciones</title>
+    <style>
+        /* Estilos generales para todo el cuerpo de la página */
+        body {
+            font-family: Arial, sans-serif;  /* fuente del contenido */
+            margin: 0;  /* Elimina márgenes */
+            background-image: url('https://images.pexels.com/photos/30353517/pexels-photo-30353517/free-photo-of-serene-misty-coastal-landscape-at-sunrise.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;  /* Color del texto principal */
+        }
+
+        /* Estilos para la barra de navegación */
+        .navbar {
+            background-color: #2E8B57;  /* Color de fondo */
+            padding: 20px;
+            color: #ffffff;  /* Color texto principal */
+            text-align: center;  /* Centra el texto */
+            font-size: 30px;  /* Tamaño del texto */
+            box-shadow: 0px 4px 6px #0000001a;  /* Sombra para la barra */
+        }
+
+        /* Contenedor para la barra de búsqueda y el botón */
+        .search-container {
+            display: flex;  /* Usamos flexbox para alinear elementos */
+            justify-content: center;  /* Centra los elementos en la página */
+            margin-top: 40px;
+            padding: 0 20px;  
+        }
+
+        /* Estilo para la barra de búsqueda */
+        .search-bar {
+            width: 60%;  /* Ancho de la barra de búsqueda */
+            padding: 14px;  /* Relleno */
+            font-size: 16px;  /* Tamaño de la fuente */
+            border-radius: 20px;  /* Bordes redondeados */
+            border: 2px solid #2E8B57;
+            background-color: #f9f9f9;  /* Color de fondo de la barra */
+            transition: border-color 1s ease;  /* Transición para el cambio de borde */
+        }
+
+        /* Efecto cuando la barra de búsqueda está en foco */
+        .search-bar:focus {
+            border-color: #62d5b9d6;  /* Cambia el color del borde a cuando está enfocado */
+            outline: none;  /* Elimina el borde predeterminado de la barra */
+        }
+
+        /* Estilo para el botón de búsqueda */
+        .search-button {
+            padding: 14px;
+            background-color: #2E8B57;  /* Color del botón */
+            color: rgb(15, 15, 15);  /* Color del texto */
+            border: none;  /* Elimina el borde por defecto */
+            border-radius: 20px;  /* Bordes redondeados */
+            cursor: pointer;  /* Cambia el cursor a mano cuando pasa por encima */
+            font-size: 16px;  /* Tamaño de la letra */
+            transition: background-color 1s ease;
+            display: flex;
+            align-items: center;
+            margin-left: 10px;  /* Espacio entre la barra de búsqueda y el botón */
+        }
+
+        /* Icono de búsqueda dentro del botón */
+        .search-button i {
+            margin-right: 8px;
+        }
+
+        /* Efecto cuando el cursor pasa por encima del botón */
+        .search-button:hover {
+            background-color: #218838;  /* Cambia el color a verde más oscuro al pasar el mouse */
+        }
+
+        /* Contenedor de las tarjetas de habitaciones */
+        .room-container {
+            display: flex;  /* Usamos flexbox para distribuir las tarjetas */
+            justify-content: space-around;  /* Espacio entre las tarjetas */
+            flex-wrap: wrap;
+            margin-top: 40px;  /* Espacio superior */
+            padding: 0 20px;  /* Espacio lateral */
+        }
+
+        /* Estilo para cada tarjeta de habitación */
+        .room-card {
+            background-color: #ffffff;  /* Fondo blanco para las tarjetas */
+            border-radius: 12px;  /* Bordes redondeados */
+            padding: 20px;
+            width: 270px;  /* Ancho de las tarjetas */
+            margin: 10px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);  /* Sombra para las tarjetas */
+            text-align: center;  /* Centra el texto dentro de la tarjeta */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;  /* Transiciones suaves al hacer mover */
+        }
+
+        /* Efecto cuando el cursor pasa por encima de la tarjeta */
+        .room-card:hover {
+            transform: scale(1.05);  /* Aumenta el tamaño de la tarjeta */
+            box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);  /* Aumenta la sombra */
+        }
+
+        /* Título dentro de la tarjeta de habitación */
+        .room-card h3 {
+            color: #333;  /* Color oscuro para el título */
+            font-size: 22px;  /* Tamaño de fuente más grande */
+            margin-bottom: 15px;  /* Espacio debajo del título */
+        }
+
+        /* Descripción dentro de la tarjeta */
+        .room-card p {
+            color: #323030;  /* Color de la descripción */
+            font-size: 14px;  /* Tamaño de la letra */
+            margin: 15px 0;
+        }
+
+        /* Precio dentro de la tarjeta */
+        .room-card .price {
+            font-size: 18px;  /* Tamaño de letra para el precio */
+            font-weight: bold;  /* Resalta en negrita */
+            color: #2E8B57;  /* Color precio */
+            margin: 10px 0;
+        }
+
+        /* Estilo para el botón de reserva en cada tarjeta */
+        .room-card .button-container {
+            display: flex;
+            justify-content: center;  /* Centra el botón */
+            margin-top: 15px;
+        }
+
+        .room-card button {
+            padding: 12px;
+            background-color: #2E8B57;  /* Color de fondo para el botón */
+            color: white;  /* Color del texto */
+            border: none;  /* Elimina el borde */
+            border-radius: 20px;  /* Bordes redondeados */
+            font-size: 16px;  /* Tamaño de fuente */
+            cursor: pointer;  /* Cambia el cursor a mano al pasar el mouse */
+            transition: background-color 0.3s ease;  /* Transición suave para el color de fondo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Icono en el botón de reserva */
+        .room-card button i {
+            margin-right: 8px;
+        }
+
+        /* Efecto cuando el cursor pasa por encima del botón de reserva */
+        .room-card button:hover {
+            background-color: #218838;  /* Cambia el color al pasar el cursor */
+        }
+
+        /* Animación de aparición para los elementos al cargarse */
+        .search-container, .room-container {
+            animation: fadeIn 1s ease-in;  /* Aparecen con una animación suave */
+        }
+
+        /* Animación de "fadeIn" (desvanecimiento) */
+        @keyframes fadeIn {
+            0% { opacity: 0; }  /* Comienza invisible */
+            100% { opacity: 1; }  /* Termina completamente visible */
+        }
+    </style>
+    <!-- Incluyendo la fuente de los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <!-- Barra de Navegación -->
+    <div class="navbar">
+        Alquiler de Habitaciones  <!-- Título de la barra de navegación -->
+    </div>
+
+    <!-- Barra de Búsqueda -->
+    <div class="search-container">
+        <!-- Barra de búsqueda donde el usuario puede escribir -->
+        <input type="text" class="search-bar" placeholder="Buscar precio, ubicación, reservación, etc...">
+        <!-- Botón de búsqueda al lado de la barra de búsqueda -->
+        <button class="search-button"><i class="fas fa-search"></i>Buscar</button>
+    </div>
+
+    <!-- Habitaciones -->
+    <!-- Tarjetas de Habitaciones -->
+    <div class="room-container">
+        <!-- Primera tarjeta de habitación -->
+        <div class="room-card">
+            <h3>Habitación Premium</h3>
+            <p>Habitación con vista al mar, cama king size, baño privado, wifi y aire acondicionado.</p>
+            <p class="price">$200 por noche</p>
+            <div class="button-container">
+                <button><i class="fas fa-bed"></i>Reservar Ahora</button>
+            </div>
+        </div>
+        
+        <!-- Segunda tarjeta de habitación -->
+        <div class="room-card">
+            <h3>Habitación Económica</h3>
+            <p>Habitación sencilla, baño compartido, wifi gratuito.</p>
+            <p class="price">$50 por noche</p>
+            <div class="button-container">
+                <button><i class="fas fa-bed"></i>Reservar Ahora</button>
+            </div>
+        </div>
+
+        <!-- Tercera tarjeta de habitación -->
+        <div class="room-card">
+            <h3>Habitación VIP</h3>
+            <p>Habitación Doble, 2 camas wifi, tele con canales gratuitos y mucho más</p>
+            <p class="price">$250 por noche</p>
+            <div class="button-container">
+                <button><i class="fas fa-bed"></i>Reservar Ahora</button>
+            </div>
+        </div>
+
+        <!-- Cuarta tarjeta de habitación -->
+        <div class="room-card">
+            <h3>Habitación de Lujo</h3>
+            <p>Habitación con jacuzzi, cama king size, y todos los servicios premium.</p>
+            <p class="price">$300 por noche</p>
+            <div class="button-container">
+                <button><i class="fas fa-bed"></i>Reservar Ahora</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

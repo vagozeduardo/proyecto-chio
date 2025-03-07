@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://images.pexels.com/photos/30353517/pexels-photo-30353517/free-photo-of-serene-misty-coastal-landscape-at-sunrise.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Contenedor del formulario */
+        .login-container {
+            background: rgba(8, 106, 57, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(3, 244, 184, 0.3);
+            width: 350px; /* Aumenté el tamaño */
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .login-container:hover {
+            transform: scale(1.05);
+        }
+
+        /* Título */
+        h2 {
+            color: white;
+            font-size: 24px; /* Aumenté el tamaño del título */
+            margin-bottom: 15px;
+        }
+
+        /* Estilos para los campos de entrada */
+        input {
+            width: 90%;
+            padding: 12px; /* Aumenté el tamaño de los campos */
+            margin: 10px 0;
+            border: 1px solid #0c5c3c;
+            border-radius: 10px;
+            background-color: #f1f1f1;
+            font-size: 16px; /* Aumenté el tamaño de la fuente */
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #320dd4;
+            background-color: #dde7ff;
+            outline: none;
+        }
+
+        /* Contenedor de botones */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Aumenté el espacio entre los botones */
+            margin-top: 12px;
+        }
+
+        /* Estilos para los botones */
+        button {
+            width: 100%;
+            padding: 12px; /* Aumenté el tamaño de los botones */
+            background-color: #2E8B57; /* Verde que me pasaste */
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px; /* Aumenté el tamaño de la fuente */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #218838; /* Verde más oscuro al pasar el mouse */
+            transform: scale(1.05);
+        }
+
+        /* Botón Registrarme */
+        .register-btn {
+            background-color: #2E8B57; /* Verde que me pasaste */
+        }
+
+        .register-btn:hover {
+            background-color: #218838; /* Verde más oscuro al pasar el mouse */
+        }
+
+        /* Mensaje de error */
+        #message {
+            color: red;
+            font-size: 14px; /* Aumenté el tamaño del mensaje */
+            margin-top: 10px;
+        }
+
+        /* Texto "¿No tienes cuenta?" */
+        .register-text {
+            color: white;
+            font-size: 14px; /* Aumenté el tamaño del texto */
+            margin-top: 12px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    
+    <!-- Campo de entrada para el usuario -->
+    <input type="text" id="username" placeholder="Ingrese Usuario" required>
+
+    <!-- Campo de entrada para la contraseña -->
+    <input type="password" id="password" placeholder="Ingrese Contraseña" required>
+
+    <div class="button-container">
+        <!-- Botón para iniciar sesión -->
+        <button onclick="login()">Ingresar</button>
+
+        <!-- Texto adicional -->
+        <p class="register-text">¿No tienes cuenta?</p>
+
+        <!-- Botón para registrarse -->
+        <button class="register-btn" onclick="redirigirRegistro()">Registrarme</button>
+    </div>
+
+    <!-- Mensaje de error -->
+    <p id="message"></p>
+</div>
+
+<script>
+    function login() {
+        var user = document.getElementById("username").value;
+        var pass = document.getElementById("password").value;
+        
+        if (user === "admin" && pass === "1234") {
+            alert("Inicio de sesión exitoso");
+            window.location.href = "cuerpo.html"; 
+        } else {
+            document.getElementById("message").innerText = "Usuario o contraseña incorrectos";
+        }
+    }
+
+    function redirigirRegistro() {
+        window.location.href = "b_registro.html";//Cambia esta URL según tu proyecto
+    }
+</script>
+
+</body>
+</html>

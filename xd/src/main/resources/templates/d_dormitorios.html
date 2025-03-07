@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de la Habitación</title>
+    <style>
+        /* Reset general de márgenes y padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo general de la página */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('https://images.pexels.com/photos/30353517/pexels-photo-30353517/free-photo-of-serene-misty-coastal-landscape-at-sunrise.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Encabezado */
+        .header {
+            background-color: rgba(15, 63, 102, 0.8);
+            color: #03f4b8;
+            padding: 20px 30px;
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Botón minimalista de regresar */
+        .back-button {
+            background-color: transparent;
+            color: #03f4b8;
+            font-size: 18px;
+            border: 1px solid #03f4b8;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #03f4b8;
+            color: white;
+        }
+
+        /* Contenedor principal de la habitación */
+        .room-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .room-container:hover {
+            transform: scale(1.02);
+        }
+
+        .room-details {
+            color: #f9f9f9;
+            flex-grow: 1;
+        }
+
+        .room-details h2 {
+            color: #03f4b8;
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .room-details p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #03f4b8;
+            margin-bottom: 25px;
+        }
+
+        /* Estilo para las imágenes */
+        .room-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .room-images img {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .room-images img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Estilo para el mapa */
+        #map {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+            grid-column: span 2;
+        }
+
+        /* Estilo para el botón de reservar (Minimalista) */
+        .reserve-button {
+            background-color: transparent;
+            color: #03f4b8;
+            padding: 12px 25px;
+            border: 2px solid #03f4b8;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-align: center;
+            margin-top: 20px;
+            align-self: flex-start;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .reserve-button:hover {
+            background-color: #03f4b8;
+            color: white;
+        }
+
+        /* Descripción de la habitación */
+        .description {
+            margin-top: 15px;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #f9f9f9;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            grid-column: span 2;
+        }
+
+    </style>
+    <!-- Agregar la API de Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <div class="header">
+        Detalles de la Habitación
+    </div>
+
+    <!-- Botón de regresar -->
+    <a href="index.html">
+        <button class="back-button">Regresar</button>
+    </a>
+
+    <div class="room-container">
+        <!-- Galería de imágenes (4 imágenes) -->
+        <div class="room-images">
+            <img src="https://via.placeholder.com/400x300" alt="Imagen 1">
+            <img src="https://via.placeholder.com/400x300" alt="Imagen 2">
+            <img src="https://via.placeholder.com/400x300" alt="Imagen 3">
+            <img src="https://via.placeholder.com/400x300" alt="Imagen 4">
+        </div>
+
+        <!-- Mapa de la ubicación -->
+        <div id="map"></div>
+
+        <div class="room-details">
+            <h2>Habitación en Calle Ficticia, Ciudad Ejemplo</h2>
+            <p><strong>Propietario:</strong> Juan Pérez</p>
+            <p><strong>Ubicación:</strong> Calle Ficticia, Ciudad Ejemplo</p>
+            <p class="price"><strong>Precio:</strong> $4,500 MXN</p>
+        </div>
+
+        <!-- Descripción de la habitación -->
+        <div class="description">
+            <h3>Descripción de la Habitación</h3>
+            <p>Esta habitación es perfecta para estudiantes o profesionales que buscan un lugar tranquilo y cómodo para vivir. Cuenta con todos los servicios incluidos, como Wi-Fi, aire acondicionado, y una excelente ubicación cerca de universidades y transporte público. Además, tiene una vista increíble y un ambiente acogedor.</p>
+        </div>
+
+        <!-- Botón de reservar -->
+        <a href="formulario_pago.html">
+            <button class="reserve-button">Reservar ahora</button>
+        </a>
+    </div>
+
+    <script>
+        // Inicializar el mapa de Google
+        function initMap() {
+            var roomLocation = { lat: 19.4326, lng: -99.1332 }; // Aquí puedes poner las coordenadas reales de la habitación
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: roomLocation
+            });
+
+            // Marcador en el mapa
+            var marker = new google.maps.Marker({
+                position: roomLocation,
+                map: map,
+                title: 'Ubicación de la Habitación'
+            });
+        }
+    </script>
+
+</body>
+</html>
